@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oil & Masala</title>
+    <link rel="stylesheet" href="oil.css">
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <h1 class="logo1" href="">OrganicOasis</h1>
+        </div>
+        <ul id="menu-content">
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Products</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="./cart.html">MyCart</a></li>
+        </ul>
+        <div class="menu" id="menu-icon">
+            <div class="menu-line"></div>
+            <div class="menu-line"></div>
+            <div class="menu-line"></div>
+        </div>
+    </nav><br>
+    <h1 class="head1">Oils & Masalas</h1><br>
+    <div class="mainimg2">
+        <div class="fruits">
+            <img class="img2" id="img-1" src="./coconut oil.png" alt="" ><br><br>
+            <h2 id="name-1">Coconut Oil</h2>
+            <input type="number" name="kgs" id="quantity-1" class="quantity-input" placeholder="Number of kgs" style="border-radius: 25px; border: 1px solid black; padding: 5px; text-align: center;" oninput="updateTotal(1)"><br>
+            <p class="para1">per kg ₹<span id="price-per-kg-1">250</span> <span class="line1" >₹300</span></p><br>
+            <p>Total: ₹<span id="total-price-1">0</span></p><br>
+            <button id="add-to-cart-1" style="color: white; background-color: #008000; color: white; border: none; padding-left: 40px; padding-right: 40px; padding-top: 10px; padding-bottom: 10px; border-radius: 25px; font-weight: 600;" onclick="addToCart(1)">Add to cart</button>
+        </div><br>
+        <div class="fruits1">
+            <img class="img3" id="img-2" src="./peanut.webp" alt="" ><br><br>
+            <h2 id="name-2">Peanut Oil</h2>
+            <input type="number" name="kgs" id="quantity-2" class="quantity-input" placeholder="Number of kgs" style="border-radius: 25px; border: 1px solid black; padding: 5px;" oninput="updateTotal(2)"><br>
+            <p class="para1">per kg ₹<span id="price-per-kg-2">120</span> <span class="line1">₹150</span></p><br>
+            <p>Total: ₹<span id="total-price-2">0</span></p><br>
+            <button id="add-to-cart-2" style="color: white; background-color: #008000; color: white; border: none; padding-left: 40px; padding-right: 40px; padding-top: 10px; padding-bottom: 10px; border-radius: 25px; font-weight: 600;" onclick="addToCart(2)">Add to cart</button>
+    </div><br>
+        <div class="fruits2">
+            <img class="img4" id="img-3" src="./avacado oil.jpg" alt="" ><br><br>
+            <h2 id="name-3">Avacado Oil</h2>
+            <input type="number" name="kgs" id="quantity-3" class="quantity-input" placeholder="Number of kgs" style="border-radius: 25px; border: 1px solid black; padding: 5px;" oninput="updateTotal(3)"><br>
+            <p class="para1">per kg ₹<span id="price-per-kg-3">20</span> <span class="line1">₹50</span></p><br>
+            <p>Total: ₹<span id="total-price-3">0</span></p><br>
+            <button id="add-to-cart-3" style="color: white; background-color: #008000; color: white; border: none; padding-left: 40px; padding-right: 40px; padding-top: 10px; padding-bottom: 10px; border-radius: 25px; font-weight: 600;" onclick="addToCart(3)">Add to cart</button>
+    </div>
+    </div><br><br><br>
+    <div class="mainimg2">
+        <div class="fruits">
+            <img class="img2" id="img-4" src="./neam oil.jpg" alt="" ><br><br>
+            <h2 id="name-4">Neam Oil</h2>
+            <input type="number" name="kgs" id="quantity-4" class="quantity-input" placeholder="Number of kgs" style="border-radius: 25px; border: 1px solid black; padding: 5px; text-align: center;" oninput="updateTotal(4)"><br>
+            <p class="para1">per kg ₹<span id="price-per-kg-4">250</span> <span class="line1" >₹300</span></p><br>
+            <p>Total: ₹<span id="total-price-4">0</span></p><br>
+            <button id="add-to-cart-4" style="color: white; background-color: #008000; color: white; border: none; padding-left: 40px; padding-right: 40px; padding-top: 10px; padding-bottom: 10px; border-radius: 25px; font-weight: 600;" onclick="addToCart(4)">Add to cart</button>
+        </div><br>
+        <div class="fruits1">
+            <img class="img3" id="img-5" src="./olive oil.jpg" alt="" ><br><br>
+            <h2 id="name-5">Olive Oil</h2>
+            <input type="number" name="kgs" id="quantity-5" class="quantity-input" placeholder="Number of kgs" style="border-radius: 25px; border: 1px solid black; padding: 5px;" oninput="updateTotal(5)"><br>
+            <p class="para1">per kg ₹<span id="price-per-kg-5">120</span> <span class="line1">₹150</span></p><br>
+            <p>Total: ₹<span id="total-price-5">0</span></p><br>
+            <button id="add-to-cart-5" style="color: white; background-color: #008000; color: white; border: none; padding-left: 40px; padding-right: 40px; padding-top: 10px; padding-bottom: 10px; border-radius: 25px; font-weight: 600;" onclick="addToCart(5)">Add to cart</button>
+    </div><br>
+        <div class="fruits2">
+            <img class="img4" id="img-6" src="./Castor-Oil.jpg" alt="" ><br><br>
+            <h2 id="name-6">Castor Oil</h2>
+            <input type="number" name="kgs" id="quantity-6" class="quantity-input" placeholder="Number of kgs" style="border-radius: 25px; border: 1px solid black; padding: 5px;" oninput="updateTotal(6)"><br>
+            <p class="para1">per kg ₹<span id="price-per-kg-6">30</span> <span class="line1">₹50</span></p><br>
+            <p>Total: ₹<span id="total-price-6">0</span></p><br>
+            <button id="add-to-cart-6" style="color: white; background-color: #008000; color: white; border: none; padding-left: 40px; padding-right: 40px; padding-top: 10px; padding-bottom: 10px; border-radius: 25px; font-weight: 600;" onclick="addToCart(6)">Add to cart</button>
+    </div>
+    </div><br><br><br>
+    <div class="mainimg2">
+        <div class="fruits">
+            <img class="img2" id="img-7" src="./ginger garlic paste.jpg" alt="" ><br><br>
+            <h2 id="name-7">Ginger garlic paste</h2>
+            <input type="number" name="kgs" id="quantity-7" class="quantity-input" placeholder="Number of kgs" style="border-radius: 25px; border: 1px solid black; padding: 5px; text-align: center;" oninput="updateTotal(7)"><br>
+            <p class="para1">per kg ₹<span id="price-per-kg-7">250</span> <span class="line1" >₹300</span></p><br>
+            <p>Total: ₹<span id="total-price-7">0</span></p><br>
+            <button id="add-to-cart-7" style="color: white; background-color: #008000; color: white; border: none; padding-left: 40px; padding-right: 40px; padding-top: 10px; padding-bottom: 10px; border-radius: 25px; font-weight: 600;" onclick="addToCart(7)">Add to cart</button>
+        </div><br>
+        <div class="fruits1">
+            <img class="img3" id="img-8" src="./coriander dhaniya seeds.jpg" alt="" ><br><br>
+            <h2 id="name-8">Coriander Dhaniya seeds</h2>
+            <input type="number" name="kgs" id="quantity-8" class="quantity-input" placeholder="Number of kgs" style="border-radius: 25px; border: 1px solid black; padding: 5px;" oninput="updateTotal(8)"><br>
+            <p class="para1">per kg ₹<span id="price-per-kg-8">120</span> <span class="line1">₹150</span></p><br>
+            <p>Total: ₹<span id="total-price-8">0</span></p><br>
+            <button id="add-to-cart-8" style="color: white; background-color: #008000; color: white; border: none; padding-left: 40px; padding-right: 40px; padding-top: 10px; padding-bottom: 10px; border-radius: 25px; font-weight: 600;" onclick="addToCart(8)">Add to cart</button>
+    </div><br>
+        <div class="fruits2">
+            <img class="img4" id="img-9" src="./powder-asafoetida.webp" alt="" ><br><br>
+            <h2 id="name-9">Asafoetida Powder</h2>
+            <input type="number" name="kgs" id="quantity-9" class="quantity-input" placeholder="Number of kgs" style="border-radius: 25px; border: 1px solid black; padding: 5px;" oninput="updateTotal(9)"><br>
+            <p class="para1">per kg ₹<span id="price-per-kg-9">30</span> <span class="line1">₹50</span></p><br>
+            <p>Total: ₹<span id="total-price-9">0</span></p><br>
+            <button id="add-to-cart-9" style="color: white; background-color: #008000; color: white; border: none; padding-left: 40px; padding-right: 40px; padding-top: 10px; padding-bottom: 10px; border-radius: 25px; font-weight: 600;" onclick="addToCart(9)">Add to cart</button>
+    </div>
+    </div><br><br><br>
+    <div class="mainimg2">
+        <div class="fruits">
+            <img class="img2" id="img-10" src="./black-mustard-seeds.jpg" alt="" ><br><br>
+            <h2 id="name-10">Mustard seeds</h2>
+            <input type="number" name="kgs" id="quantity-10" class="quantity-input" placeholder="Number of kgs" style="border-radius: 25px; border: 1px solid black; padding: 5px; text-align: center;" oninput="updateTotal(10)"><br>
+            <p class="para1">per kg ₹<span id="price-per-kg-10">250</span> <span class="line1" >₹300</span></p><br>
+            <p>Total: ₹<span id="total-price-10">0</span></p><br>
+            <button id="add-to-cart-10" style="color: white; background-color: #008000; color: white; border: none; padding-left: 40px; padding-right: 40px; padding-top: 10px; padding-bottom: 10px; border-radius: 25px; font-weight: 600;" onclick="addToCart(10)">Add to cart</button>
+        </div><br>
+        <div class="fruits1">
+            <img class="img3" id="img-11" src="./turmeric powder.webp" alt="" ><br><br>
+            <h2 id="name-11">Turmeric Powder</h2>
+            <input type="number" name="kgs" id="quantity-11" class="quantity-input" placeholder="Number of kgs" style="border-radius: 25px; border: 1px solid black; padding: 5px;" oninput="updateTotal(11)"><br>
+            <p class="para1">per kg ₹<span id="price-per-kg-11">120</span> <span class="line1">₹150</span></p><br>
+            <p>Total: ₹<span id="total-price-11">0</span></p><br>
+            <button id="add-to-cart-11" style="color: white; background-color: #008000; color: white; border: none; padding-left: 40px; padding-right: 40px; padding-top: 10px; padding-bottom: 10px; border-radius: 25px; font-weight: 600;" onclick="addToCart(11)">Add to cart</button>
+    </div><br>
+        <div class="fruits2">
+            <img class="img4" id="img-12" src="./coriander-powder.webp" alt="" ><br><br>
+            <h2 id="name-12">Coriander powder</h2>
+            <input type="number" name="kgs" id="quantity-12" class="quantity-input" placeholder="Number of kgs" style="border-radius: 25px; border: 1px solid black; padding: 5px;" oninput="updateTotal(12)"><br>
+            <p class="para1">per kg ₹<span id="price-per-kg-12">30</span> <span class="line1">₹50</span></p><br>
+            <p>Total: ₹<span id="total-price-12">0</span></p><br>
+            <button id="add-to-cart-12" style="color: white; background-color: #008000; color: white; border: none; padding-left: 40px; padding-right: 40px; padding-top: 10px; padding-bottom: 10px; border-radius: 25px; font-weight: 600;" onclick="addToCart(12)">Add to cart</button>
+    </div>
+    </div><br><br><br>
+    <div class="mainimg2">
+        <div class="fruits">
+            <img class="img2" id="img-13" src="./jerra powder.webp" alt="" ><br><br>
+            <h2 id="name-13">Jerra Powder</h2>
+            <input type="number" name="kgs" id="quantity-13" class="quantity-input" placeholder="Number of kgs" style="border-radius: 25px; border: 1px solid black; padding: 5px; text-align: center;" oninput="updateTotal(13)"><br>
+            <p class="para1">per kg ₹<span id="price-per-kg-13">250</span> <span class="line1" >₹300</span></p><br>
+            <p>Total: ₹<span id="total-price-13">0</span></p><br>
+            <button id="add-to-cart-13" style="color: white; background-color: #008000; color: white; border: none; padding-left: 40px; padding-right: 40px; padding-top: 10px; padding-bottom: 10px; border-radius: 25px; font-weight: 600;" onclick="addToCart(13)">Add to cart</button>
+        </div><br>
+        <div class="fruits1">
+            <img class="img3" id="img-14" src="./everest-masala-garam.webp" alt="" ><br><br>
+            <h2 id="name-14">Garam Masala</h2>
+            <input type="number" name="kgs" id="quantity-14" class="quantity-input" placeholder="Number of kgs" style="border-radius: 25px; border: 1px solid black; padding: 5px;" oninput="updateTotal(14)"><br>
+            <p class="para1">per kg ₹<span id="price-per-kg-14">120</span> <span class="line1">₹150</span></p><br>
+            <p>Total: ₹<span id="total-price-14">0</span></p><br>
+            <button id="add-to-cart-14" style="color: white; background-color: #008000; color: white; border: none; padding-left: 40px; padding-right: 40px; padding-top: 10px; padding-bottom: 10px; border-radius: 25px; font-weight: 600;" onclick="addToCart(14)">Add to cart</button>
+    </div><br>
+        <div class="fruits2">
+            <img class="img4" id="img-15" src="./chicken masala.webp" alt="" ><br><br>
+            <h2 id="name-15">Chicken Masala</h2>
+            <input type="number" name="kgs" id="quantity-15" class="quantity-input" placeholder="Number of kgs" style="border-radius: 25px; border: 1px solid black; padding: 5px;" oninput="updateTotal(15)"><br>
+            <p class="para1">per kg ₹<span id="price-per-kg-15">20</span> <span class="line1">₹50</span></p><br>
+            <p>Total: ₹<span id="total-price-15">0</span></p><br>
+            <button id="add-to-cart-15" style="color: white; background-color: #008000; color: white; border: none; padding-left: 40px; padding-right: 40px; padding-top: 10px; padding-bottom: 10px; border-radius: 25px; font-weight: 600;" onclick="addToCart(15)">Add to cart</button>
+    </div>
+    </div><br><br><br>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section about">
+                <h2>About OrganicOasis</h2>
+                <p>We are committed to providing high-quality organic products to our customers. Our mission is to promote a healthy lifestyle and sustainable living.</p>
+                <p>Follow us on social media:</p>
+                <ul class="social-links">
+                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                    <li><a href="#"><i class="fab fa-pinterest"></i></a></li>
+                </ul>
+            </div>
+            <div class="footer-section quick-links">
+                <h2>Quick Links</h2>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Products</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-section contact">
+                <h2>Contact Us</h2>
+                <p>Email: info@organicoasis.com</p>
+                <p>Phone: +1 (123) 456-7890</p>
+                <p>Address: 123 Organic Street, City, Country</p>
+            </div>
+            <div class="footer-section newsletter">
+                <h2>Subscribe to Our Newsletter</h2>
+                <form action="#" method="post">
+                    <input type="email" name="email" placeholder="Enter your email">
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-links">
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Use</a></li>
+                    <li><a href="#">Return Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-info">
+                <p >&copy; 2024 OrganicOasis. All rights reserved.</p>
+                <p>Designed by YourName</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        document.getElementById('menu-icon').addEventListener('click', function() {
+            var menuContent = document.getElementById('menu-content');
+            if (menuContent.style.display === 'block') {
+                menuContent.style.display = 'none';
+            } else {
+                menuContent.style.display = 'block';
+            }
+        });
+        function updateTotal(id) {
+        const quantity = document.getElementById(`quantity-${id}`).value;
+        const pricePerKg = document.getElementById(`price-per-kg-${id}`).textContent;
+        const total = quantity * pricePerKg;
+        document.getElementById(`total-price-${id}`).textContent = total || 0;
+    }
+
+    function addToCart(id) {
+    const quantity = document.getElementById(`quantity-${id}`).value;
+    const pricePerKg = document.getElementById(`price-per-kg-${id}`).textContent;
+    const total = quantity * pricePerKg;
+    const name = document.getElementById(`name-${id}`).textContent;
+    const imgSrc = document.getElementById(`img-${id}`).src;
+    const item = {
+        id: id,
+        name: name,
+        quantity: quantity,
+        pricePerKg: pricePerKg,
+        total: total,
+        imgSrc: imgSrc
+    };
+
+        let cart = localStorage.getItem('cart') ? localStorage.getItem('cart').split(';') : [];
+        cart.push(`${item.id},${item.name},${item.quantity},${item.pricePerKg},${item.total},${item.imgSrc}`);
+        localStorage.setItem('cart', cart.join(';'));
+        alert(`Added item ${name} (ID: ${id}) to cart`);
+    }
+    </script>
+</body>
+</html>

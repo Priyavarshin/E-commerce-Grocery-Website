@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart - OrganicOasis</title>
+    <link rel="stylesheet" href="./cart.css">
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <h1 class="logo1">OrganicOasis</h1>
+        </div>
+        <ul id="menu-content">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Products</a></li>
+            <li><a href="">Cart</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+        <div class="menu" id="menu-icon">
+            <div class="menu-line"></div>
+            <div class="menu-line"></div>
+            <div class="menu-line"></div>
+        </div>
+    </nav>
+    <div id="myModal" class="modal">
+        <div class="modal-content" >
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>You have successfully placed your Order</h2>
+            <form id="orderForm">
+                <label for="mobileNumber">Mobile Number:</label><br>
+                <input type="text" id="mobileNumber" name="mobileNumber" oninput="validateForm()" style="border-radius: 15px;width: 270px; height: 50px; outline: none; padding:3%; "><br>
+                <label for="address">Address:</label><br>
+                <textarea id="address" name="address" oninput="validateForm()" style=" width: 270px; height: 150px;outline: none; padding: 3%; border-radius: 15px;"></textarea><br>
+                <label for="pincode">Pincode:</label><br>
+                <input type="text" id="pincode" name="pincode" oninput="validateForm()" style="width: 270px; height: 50px; outline: none; padding: 3%; border-radius: 15px;"><br><br>
+                <h2>Credit or Debit Cards</h2><br>
+                <label><input type="radio" name="paymentMethod" value="online" onclick="validateForm()">  Credit or debit card</label><br>
+                <img src="./upi.jpg" alt="" width="30px" height="30px"><br>
+                <label><a href="https://www.phonepe.com/" style="color: black;text-decoration: none;" onclick="validateForm()"><input type="radio" name="paymentMethod" value="cod" > Amazon pay UPI</a></label><br><br>
+                <label><input type="radio" name="paymentMethod" value="cod" onclick="validateForm()"> Other UPI Apps</label><br><br>
+                <label><input type="radio" name="paymentMethod" value="online" onclick="validateForm()"> Cash on Delivery / pay on Delivery</label><br><br>
+                <button type="submit" value="Place Order" id="submitBtn" onclick="placeOrder()"  style=" margin-left: 30px;padding-top: 10px; padding-bottom: 10px; padding-right: 40px; padding-left: 40px; background-color: green; color: white; border-radius: 25px; border: none; font-size: 18px; font-weight: 600; font-family: 'Times New Roman', Times, serif;" >Place Order</button><br>
+            </form>
+        </div>
+    </div>
+
+  
+    <h1 class="head1">My Cart</h1><br>
+    <div id="cart-items"></div>
+    <p id="total-price">Total Price: ₹0</p>
+    <div id="overlay" class="overlay"></div>
+    <div id="confirmationMessage" class="confirmation"><br>
+        <center><img src="./check-mark.avif" alt="" class="check"></center><br>
+       <h3> Order placed successfully!</h3><br>
+       <center>
+        <button class="close-btn" onclick="closeConfirmation()">Close</button></center>
+    </div>
+    <script>
+        document.getElementById('menu-icon').addEventListener('click', function() {
+            var menuContent = document.getElementById('menu-content');
+            if (menuContent.style.display === 'block') {
+                menuContent.style.display = 'none';
+            } else {
+                menuContent.style.display = 'block';
+            }
+        });
+        function validateMobileNumber(number) {
+            return /^\d{10}$/.test(number);
+        }
+
+        function validatePincode(pincode) {
+            return /^\d{6}$/.test(pincode);
+        }
+
+        function validateAddress(address) {
+            return address.trim().length > 0;
+        }
+
+        function loadCart() {
+            const cartString = localStorage.getItem('cart');
+            const cartItemsContainer = document.getElementById('cart-items');
+            const totalPriceElement = document.getElementById('total-price');
+
+            cartItemsContainer.innerHTML = ''; 
+            let totalPrice = 0; 
+            let itemTotalPrices = ''; 
+
+            if (!cartString) {
+                cartItemsContainer.innerHTML = '<p>Your cart is empty.</p>';
+                totalPriceElement.textContent = `Total Price: ₹0`;
+                return;
+            }
+
+            const cart = cartString.split(';').map((item, index) => {
+                const [id, name, quantity, pricePerKg, total, imgSrc] = item.split(',');
+                return { index, id, name, quantity: parseInt(quantity), pricePerKg: parseFloat(pricePerKg), total: parseFloat(total), imgSrc };
+            });
+
+            cart.forEach(item => {
+    totalPrice += item.total;
+
+    const itemContainer = document.createElement('div');
+    itemContainer.classList.add('cart-item');
+
+    itemContainer.innerHTML = `
+        <img src="${item.imgSrc}" alt="Product Image" style="width: 200px; height: auto; margin-right: 10px;">
+        <p>Item Name: ${item.name}</p>
+        <div>
+            <label id="quantity-label-${item.index}">Quantity:</label>
+            <button onclick="updateQuantity(${item.index}, ${item.quantity}, -1)" style="border: none; background-color: grey; padding-left: 8px; padding-right: 8px; padding-top: 2px; padding-bottom: 2px; color: white; font-size: 15px; font-weight: 600 ">-</button>
+            <span id="quantity-${item.index}">${item.quantity}</span>
+            <button onclick="updateQuantity(${item.index}, ${item.quantity}, 1)" style="border: none; background-color: grey; padding-left: 8px; padding-right: 8px; padding-top: 2px; padding-bottom: 2px; color: white; font-size: 15px; font-weight: 600 ">+</button>
+        </div>
+        <p>Price per kg: ₹${item.pricePerKg.toFixed(2)}</p>
+        <p id="total-${item.index}">Total: ₹${item.total.toFixed(2)}</p>                    
+        <button onclick="removeFromCart(${item.index})" style="color: white; background-color: red; border: none; padding: 5px 10px; border-radius: 5px; margin-left: 55px">Remove</button>                
+    `;
+
+    cartItemsContainer.appendChild(itemContainer);
+
+    itemTotalPrices += `<p style="margin-top: 5px; margin-bottom: 5px; margin-left:15px">Price(${item.name}): ₹${item.total.toFixed(2)}</p>`;
+});
+
+        
+            cartItemsContainer.innerHTML += `<div style="margin-top: 10px; font-weight: bold;">${itemTotalPrices}</div>`;
+
+            totalPriceElement.textContent = `Total Price: ₹${totalPrice.toFixed(2)}`;
+            totalPriceElement.style.fontWeight = 'bold';
+            totalPriceElement.style.fontSize = '18px';
+            totalPriceElement.style.marginTop = '10px';
+            totalPriceElement.style.marginLeft = '15px';
+        }
+
+    
+        window.onload = () => {
+            loadCart();
+            
+            const buyNowButton = document.createElement('button');
+            buyNowButton.id = 'buyNowButton';
+            buyNowButton.textContent = 'Buy Now';
+            buyNowButton.style.backgroundColor = 'green'; 
+            buyNowButton.style.color = 'white';
+            buyNowButton.style.border = 'none';
+            buyNowButton.style.padding = '10px 20px';
+            buyNowButton.style.borderRadius = '5px';
+            buyNowButton.style.marginTop = '10px';
+            buyNowButton.style.marginLeft='55px';
+            
+            const totalPriceContainer = document.getElementById('total-price').parentNode;
+
+            
+            totalPriceContainer.appendChild(buyNowButton);
+
+            
+            buyNowButton.addEventListener('click', buyNow);
+        };
+        function showMessage(message) {
+        var msgContainer = document.getElementById("messageContainer");
+        msgContainer.style.display = "block";
+
+        var content = document.getElementById("content");
+        content.classList.add("blur-background");
+
+        var messageContent = document.getElementById("messageContent");
+        messageContent.textContent = message;
+    }
+
+    function hideMessage() {
+        var msgContainer = document.getElementById("messageContainer");
+        msgContainer.style.display = "none";
+
+        var content = document.getElementById("content");
+        content.reset();
+        content.classList.remove("blur-background");
+    }
+    function validateForm() {
+            
+            var mobileNumber = document.getElementById("mobileNumber").value;
+            var mobileNumberPattern = /^\d{10}$/; 
+            if (!mobileNumber.match(mobileNumberPattern)) {
+                document.getElementById("submitBtn").style.display = "none";
+                return false;
+            }
+
+            
+            var pincode = document.getElementById("pincode").value;
+            var pincodePattern = /^\d{6}$/; 
+            if (!pincode.match(pincodePattern)) {
+                document.getElementById("submitBtn").style.display = "none";
+                return false;
+            }
+
+            
+            var address = document.getElementById("address").value;
+            if (address.trim() === "") {
+                document.getElementById("submitBtn").style.display = "none";
+                return false;
+            }
+
+            
+            var paymentMethod = document.querySelector('input[name="paymentMethod"]:checked');
+            if (!paymentMethod) {
+                document.getElementById("submitBtn").style.display = "none";
+                return false;
+            }
+
+            
+            document.getElementById("submitBtn").style.display = "block";
+            return true;
+        }
+
+        function placeOrder(event) {
+            
+            event.preventDefault();
+
+            
+            if (!validateForm()) {
+                alert("Please fill in all fields correctly.");
+                return false;
+            }
+
+            
+            document.getElementById("confirmationMessage").style.display = "block";
+            document.getElementById("overlay").style.display = "block";
+            
+            document.getElementById("orderForm").style.display = "none";
+        }
+
+        function closeConfirmation() {
+        
+            document.getElementById("confirmationMessage").style.display = "none";
+            document.getElementById("overlay").style.display = "none";
+            
+        }
+    
+    document.getElementById("orderForm").addEventListener("submit", placeOrder);
+    function hideMessage() {
+      var msgContainer = document.getElementById("messageContainer");
+      msgContainer.style.display = "none";
+    
+      var content = document.getElementById("content");
+      content.reset();
+    content.classList.remove("blur-background");
+    msgContainer.style.display = "none";
+    }
+
+        
+        function updateQuantity(index, currentQuantity, change) {
+            let cart = localStorage.getItem('cart').split(';');
+            cart = cart.map((item, idx) => {
+                if (idx === index) {
+                    let [id, name, quantity, pricePerKg, total, imgSrc] = item.split(',');
+                    quantity = parseInt(currentQuantity) + change;
+                    if (quantity < 1) quantity = 1;
+                    total = (quantity * parseFloat(pricePerKg)).toFixed(2);
+                    item = [id, name, quantity, pricePerKg, total, imgSrc].join(',');
+                }
+                return item;
+            });
+            localStorage.setItem('cart', cart.join(';'));
+            loadCart();
+        }
+        function removeFromCart(index) {
+            let cart = localStorage.getItem('cart').split(';');
+            cart.splice(index, 1);
+            localStorage.setItem('cart', cart.join(';'));
+            loadCart();
+        }
+
+        function buyNow() {
+    const modal = document.getElementById("myModal");
+    modal.style.display = "block";
+
+    const closeBtn = document.getElementsByClassName("close")[0];
+    closeBtn.onclick = function() {
+        modal.style.display = "none";
+    };
+
+
+    const orderForm = document.getElementById("orderForm");
+    orderForm.onsubmit = function(event) {
+    event.preventDefault();
+
+    
+
+    console.log("Mobile Number:", mobileNumber);
+    console.log("Address:", address);
+    console.log("Pincode:", pincode);
+    console.log("Payment Method:", paymentMethod);
+
+    modal.style.display = "none";
+    };
+        }
+</script>
+</body>
+</html>
